@@ -23,47 +23,47 @@ console.log("✅ Email User:", process.env.EMAIL_USER ? "Loaded" : "Not Found");
 connectDB();
 
 // 🔹 Twilio Credentials
-const { TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_SERVICE_ID } = process.env;
-const client = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
+// const { TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_SERVICE_ID } = process.env;
+// const client = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
 // ✅ API to send OTP
-app.post("/api/send-otp", async (req, res) => {
-  try {
-    const { phone } = req.body;
-    console.log(`📩 Sending OTP to: ${phone}`);
+// app.post("/api/send-otp", async (req, res) => {
+//   try {
+//     const { phone } = req.body;
+//     console.log(`📩 Sending OTP to: ${phone}`);
 
-    const verification = await client.verify.v2.services(TWILIO_SERVICE_ID)
-      .verifications.create({ to: phone, channel: "sms" });
+//     const verification = await client.verify.v2.services(TWILIO_SERVICE_ID)
+//       .verifications.create({ to: phone, channel: "sms" });
 
-    console.log("✅ OTP Sent:", verification.sid);
-    res.status(200).json({ message: "OTP sent successfully!", verificationSid: verification.sid });
-  } catch (error) {
-    console.error("❌ OTP Error:", error);
-    res.status(500).json({ message: error.message });
-  }
-});
+//     console.log("✅ OTP Sent:", verification.sid);
+//     res.status(200).json({ message: "OTP sent successfully!", verificationSid: verification.sid });
+//   } catch (error) {
+//     console.error("❌ OTP Error:", error);
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 
 // ✅ API to verify OTP
-app.post("/api/verify-otp", async (req, res) => {
-  try {
-    const { phone, otp } = req.body;
-    console.log(`🔍 Verifying OTP for ${phone} with code: ${otp}`);
+// app.post("/api/verify-otp", async (req, res) => {
+//   try {
+//     const { phone, otp } = req.body;
+//     console.log(`🔍 Verifying OTP for ${phone} with code: ${otp}`);
 
-    const verificationCheck = await client.verify.v2.services(TWILIO_SERVICE_ID)
-      .verificationChecks.create({ to: phone, code: otp });
+//     const verificationCheck = await client.verify.v2.services(TWILIO_SERVICE_ID)
+//       .verificationChecks.create({ to: phone, code: otp });
 
-    if (verificationCheck.status === "approved") {
-      console.log("✅ OTP Verified Successfully!");
-      res.status(200).json({ verified: true });
-    } else {
-      console.log("❌ OTP Verification Failed.");
-      res.status(400).json({ verified: false, message: "Invalid OTP" });
-    }
-  } catch (error) {
-    console.error("❌ OTP Verification Error:", error);
-    res.status(500).json({ message: error.message });
-  }
-});
+//     if (verificationCheck.status === "approved") {
+//       console.log("✅ OTP Verified Successfully!");
+//       res.status(200).json({ verified: true });
+//     } else {
+//       console.log("❌ OTP Verification Failed.");
+//       res.status(400).json({ verified: false, message: "Invalid OTP" });
+//     }
+//   } catch (error) {
+//     console.error("❌ OTP Verification Error:", error);
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 
 // ✅ API to register user & send email to admin
 app.post("/api/register", async (req, res) => {

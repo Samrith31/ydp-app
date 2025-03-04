@@ -11,16 +11,6 @@
       "static/chunks/main-app.js",
       "static/chunks/app/page.js"
     ],
-    "/admin/export/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/admin/export/page.js"
-    ],
-    "/api/export-users/route": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/api/export-users/route.js"
-    ],
     "/registerpage/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -31,6 +21,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/userlist/page.js"
+    ],
+    "/admin/export/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/admin/export/page.js"
     ]
   }
 }
