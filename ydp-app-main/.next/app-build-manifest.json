@@ -17,6 +17,11 @@
       "static/css/app/registerpage/page.css",
       "static/chunks/app/registerpage/page.js"
     ],
+    "/registration-confirm/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/registration-confirm/page.js"
+    ],
     "/userlist/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -26,6 +31,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/admin/export/page.js"
+    ],
+    "/api/export-users/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/api/export-users/route.js"
     ]
   }
 }

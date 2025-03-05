@@ -18,7 +18,7 @@ export default function Register() {
     otherLocation: "",
   });
   const [loading, setLoading] = useState(false);
-  const [isRedirecting, setIsRedirecting] = useState(false); // New state for redirect animation
+  const [isRedirecting, setIsRedirecting] = useState(false);
   const [isOther, setIsOther] = useState(false);
 
   const tamilNaduDistricts = [
@@ -54,11 +54,11 @@ export default function Register() {
       localStorage.setItem("registeredUser", JSON.stringify(res.data));
 
       toast.success("🎉 Registration successful! Redirecting...");
-      setIsRedirecting(true); // Show loading animation
+      setIsRedirecting(true);
 
       setTimeout(() => {
         router.push(`/registration-confirm?userId=${res.data.userId}`);
-      }, 3000); // 3 seconds delay before redirection
+      }, 3000);
 
       setForm({
         name: "",
@@ -104,20 +104,23 @@ export default function Register() {
           className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
         />
 
-        <select
-          name="location"
-          value={form.location}
-          onChange={handleChange}
-          required
-          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
-        >
-          <option value="">Select District</option>
-          {tamilNaduDistricts.map((district, index) => (
-            <option key={index} value={district}>
-              {district}
-            </option>
-          ))}
-        </select>
+        {/* ✅ Optimized District Dropdown for Mobile & Desktop */}
+        <div className="relative w-full">
+          <select
+            name="location"
+            value={form.location}
+            onChange={handleChange}
+            required
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 appearance-none bg-white"
+          >
+            <option value="">Select District</option>
+            {tamilNaduDistricts.map((district, index) => (
+              <option key={index} value={district}>
+                {district}
+              </option>
+            ))}
+          </select>
+        </div>
 
         {isOther && (
           <input
@@ -153,7 +156,7 @@ export default function Register() {
           className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
         />
 
-        {/* Register Button */}
+        {/* ✅ Register Button OR Loading Spinner */}
         {!isRedirecting ? (
           <button
             type="submit"
@@ -170,7 +173,7 @@ export default function Register() {
           </div>
         )}
 
-        {/* View Registered Users Button */}
+        {/* ✅ View Registered Users Button */}
         {!isRedirecting && (
           <button
             type="button"
